@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Base_Datos.Models.Factura>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @{
+        if (Session["Privilegio"].Equals("True"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Propiedad.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Administracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoPago)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (Session["Privilegio"].Equals("True"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Propiedad.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPago)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Factura }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Factura }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Factura })
+            </td>
+        </tr>
+    }
+    if (Session["ID_Persona"].Equals(Convert.ToString(item.Propiedad.ID_Usuario)) && Session["Privilegio"].Equals("False"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Propiedad.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPago)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Factura }) |
+            </td>
+        </tr>
+    }
+
+
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Base_Datos.Models.Telefono>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoTelefonico)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nickname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoTelefonico)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Telefono }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Telefono }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Telefono })
+        </td>
+    </tr>
+}
+
+</table>

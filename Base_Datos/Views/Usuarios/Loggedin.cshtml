@@ -1,0 +1,13 @@
+﻿@model Base_Datos.Models.Usuario
+
+@{
+    ViewBag.Title = "Loggedin";
+}
+
+@if (Session["ID_Persona"] != null)
+{
+    <h3>Hola @Session["Nick"].ToString()</h3>
+}
+<br />
+<h4>No se te olvide <b>Finalizar la Seción</b> por segurar antes de irte. </h4>
+<br />

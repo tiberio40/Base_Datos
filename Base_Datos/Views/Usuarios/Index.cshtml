@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Base_Datos.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @{
+        if (Session["Privilegio"].Equals("True"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (Session["Privilegio"].Equals("True"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoUsuario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Usuario }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Usuario }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Usuario })
+            </td>
+        </tr>
+    }
+    if (Session["Nick"].Equals(item.Nickname) && (Session["Privilegio"].Equals("False")))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoUsuario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Usuario }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Usuario }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Usuario })
+            </td>
+        </tr>
+    }
+
+}
+
+</table>

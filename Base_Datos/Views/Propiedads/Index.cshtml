@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Base_Datos.Models.Propiedad>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (Session["Privilegio"].Equals("True"))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Propiedad }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Propiedad }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Propiedad })
+            </td>
+        </tr>
+    }
+    if (Session["Nick"].Equals(item.Usuario.Nickname))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Propiedad }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Propiedad }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Propiedad })
+            </td>
+        </tr>
+    }
+}
+
+</table>
